@@ -4,6 +4,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+class Solver {
+    void solve(ArrayList<String> lines) {
+
+    }
+}
+
 public class Day {
     String day;
 
@@ -32,7 +38,7 @@ public class Day {
         String dayNumber = args[0];
         Day day = new Day(dayNumber);
         ArrayList<String> lines = day.getInput();
-        String firstLine = lines.getFirst();
-        System.out.print(firstLine);
+        Solver solver = new Solver();
+        solver.solve(lines);
     }
 }
