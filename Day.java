@@ -4,10 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-class Solver {
-    void solve(ArrayList<String> lines) {
-
-    }
+abstract class Solver {
+    abstract void solve(ArrayList<String> lines);
 }
 
 public class Day {
@@ -38,7 +36,15 @@ public class Day {
         String dayNumber = args[0];
         Day day = new Day(dayNumber);
         ArrayList<String> lines = day.getInput();
-        Solver solver = new Solver();
-        solver.solve(lines);
+
+        try {
+            String solverClassName = "Day" + dayNumber + "Solver";
+            Class<?> solverClass = Class.forName(solverClassName);
+            Solver solver = (Solver) solverClass.getDeclaredConstructor().newInstance();
+            solver.solve(lines);
+        } catch (Exception e) {
+            System.out.println("No solver found for Day " + dayNumber);
+            e.printStackTrace();
+        }
     }
 }
