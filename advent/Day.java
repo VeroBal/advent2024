@@ -6,14 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-abstract class Solver {
-    abstract void solve(ArrayList<String> lines);
-}
 
 public class Day {
     String day;
 
-    Day(String dayNumber) {
+    protected Day(String dayNumber) {
         validateDayNumber(dayNumber);
         this.day = dayNumber;
     }
@@ -31,7 +28,7 @@ public class Day {
 
     public ArrayList<String> getInput() throws IOException {
         String s;
-        String filePath = this.day + File.separator + "input.txt";
+        String filePath = "d" + this.day + File.separator + "input.txt";
         ArrayList<String> lines = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             while ((s = reader.readLine()) != null) {
@@ -57,7 +54,8 @@ public class Day {
         ArrayList<String> lines = day.getInput();
 
         try {
-            String solverClassName = "Day" + dayNumber + "Solver";
+            String solverClassName = "d" + dayNumber + ".Day" + dayNumber + "Solver";
+
             Class<?> solverClass = Class.forName(solverClassName);
             Solver solver = (Solver) solverClass.getDeclaredConstructor().newInstance();
             solver.solve(lines);
