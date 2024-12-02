@@ -3,44 +3,39 @@ package d01;
 import java.util.ArrayList;
 
 public class QuickSort {
-    private ArrayList<Integer> list;
 
-    QuickSort(ArrayList<Integer> list1) {
-        this.list = list1;
+    public ArrayList<Integer> sort(ArrayList<Integer> list) {
+        return quickSort(list, 0, list.size() - 1);
     }
 
-    public ArrayList<Integer> sort() {
-        return quickSort(0, this.list.size() - 1);
-    }
-
-    private ArrayList<Integer> quickSort(int low, int high) {
+    private ArrayList<Integer> quickSort(ArrayList<Integer> list, int low, int high) {
         if (low < high) {
-            int pi = partition(low, high);
+            int pi = partition(list, low, high);
 
-            quickSort(low, pi - 1);
-            quickSort(pi + 1, high);
+            quickSort(list, low, pi - 1);
+            quickSort(list, pi + 1, high);
         }
-        return this.list;
+        return list;
     }
 
-    private int partition(int low, int high) {
-        int pivot = this.list.get(high);
+    private int partition(ArrayList<Integer> list, int low, int high) {
+        int pivot = list.get(high);
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-            if (this.list.get(j) <= pivot) {
+            if (list.get(j) <= pivot) {
                 i++;
-                swap(i, j);
+                swap(list, i, j);
             }
         }
 
-        swap(i + 1, high);
+        swap(list, i + 1, high);
         return i + 1;
     }
 
-    private void swap(int i, int j) {
-        int temp = this.list.get(i);
-        this.list.set(i, this.list.get(j));
-        this.list.set(j, temp);
+    private void swap(ArrayList<Integer> list, int i, int j) {
+        int temp = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, temp);
     }
 }

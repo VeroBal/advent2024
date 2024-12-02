@@ -46,17 +46,14 @@ public class Day01Solver extends Solver {
 
     @Override
     public void solve(ArrayList<String> lines) {
+        QuickSort sorter = new QuickSort();
+
         Pair<ArrayList<Integer>, ArrayList<Integer>> columns = parseInput(lines);
         ArrayList<Integer> list1 = columns.getFirst();
         ArrayList<Integer> list2 = columns.getSecond();
 
-        QuickSort sorter1 = new QuickSort(list1);
-        QuickSort sorter2 = new QuickSort(list2);
+        ArrayList<Integer> sortedList1 = sorter.sort(list1);
+        ArrayList<Integer> sortedList2 = sorter.sort(list2);
 
-        list1 = sorter1.sort();
-        list2 = sorter2.sort();
-
-        Integer first = list2.get(0);
-        System.out.println("First element of sorted list1: " + first);
     }
 }
