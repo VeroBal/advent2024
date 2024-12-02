@@ -45,7 +45,7 @@ public class Day01Solver extends Solver {
     }
 
     @Override
-    public void solve(ArrayList<String> lines) {
+    public void solve1(ArrayList<String> lines) {
         QuickSort sorter = new QuickSort();
         int totalDistance = 0;
 
@@ -63,5 +63,28 @@ public class Day01Solver extends Solver {
             totalDistance += distance;
         }
         System.out.println(totalDistance);
+    }
+
+    @Override
+    public void solve2(ArrayList<String> lines) {
+        int similarityScore = 0;
+
+        Pair<ArrayList<Integer>, ArrayList<Integer>> columns = parseInput(lines);
+        ArrayList<Integer> list1 = columns.getFirst();
+        ArrayList<Integer> list2 = columns.getSecond();
+
+        for (Integer element1 : list1) {
+            int repetitions = 0;
+            for (Integer element2 : list2) {
+                if (element1.equals(element2)) { // == here doesn't work because for Integer it will compare their
+                                                 // object reference. Another solution is to use == but use .intValue()
+                                                 // on both
+                    repetitions++;
+                }
+            }
+            int similarity = element1 * repetitions;
+            similarityScore += similarity;
+        }
+        System.out.println(similarityScore);
     }
 }

@@ -58,7 +58,9 @@ public class Day {
 
             Class<?> solverClass = Class.forName(solverClassName);
             Solver solver = (Solver) solverClass.getDeclaredConstructor().newInstance();
-            solver.solve(lines);
+            
+            solver.solve1(lines);
+            solver.solve2(lines);
         } catch (Exception e) {
             System.out.println("No solver found for Day " + dayNumber);
             e.printStackTrace();
