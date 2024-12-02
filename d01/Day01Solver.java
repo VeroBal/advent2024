@@ -47,6 +47,7 @@ public class Day01Solver extends Solver {
     @Override
     public void solve(ArrayList<String> lines) {
         QuickSort sorter = new QuickSort();
+        int totalDistance = 0;
 
         Pair<ArrayList<Integer>, ArrayList<Integer>> columns = parseInput(lines);
         ArrayList<Integer> list1 = columns.getFirst();
@@ -55,5 +56,12 @@ public class Day01Solver extends Solver {
         ArrayList<Integer> sortedList1 = sorter.sort(list1);
         ArrayList<Integer> sortedList2 = sorter.sort(list2);
 
+        for (int i = 0; i < sortedList1.size(); i++) {
+            Integer element1 = sortedList1.get(i);
+            Integer element2 = sortedList2.get(i);
+            int distance = Math.abs(element1 - element2);
+            totalDistance += distance;
+        }
+        System.out.println(totalDistance);
     }
 }
