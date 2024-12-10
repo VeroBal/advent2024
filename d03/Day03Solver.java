@@ -1,7 +1,6 @@
 package d03;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import advent.Solver;
 import java.util.regex.Matcher;
