@@ -176,6 +176,36 @@ public class Day04Solver extends Solver {
 
     @Override
     public void solve2(ArrayList<String> lines) {
+        int totalXmas = 0;
+        // Split into a 2 dimensional array
+        ArrayList<char[]> matrix = new ArrayList<>();
+        for (String line : lines) {
+            matrix.add(line.toCharArray());
+        }
 
+        for (int row = 1; row < matrix.size() - 1; row++) {
+            char[] currentRow = matrix.get(row);
+
+            for (int col = 1; col < currentRow.length - 1; col++) {
+                char currentChar = currentRow[col];
+
+                if (currentChar == 'A') {
+
+                    if ((matrix.get(row - 1)[col - 1] == 'M' && matrix.get(row + 1)[col + 1] == 'S')
+                            || (matrix.get(row - 1)[col - 1] == 'S' && matrix.get(row + 1)[col + 1] == 'M')) {
+
+                        if (matrix.get(row - 1)[col + 1] == 'S' && matrix.get(row + 1)[col - 1] == 'M') {
+                            totalXmas++;
+                        } else if (matrix.get(row - 1)[col + 1] == 'M' && matrix.get(row + 1)[col - 1] == 'S') {
+
+                            totalXmas++;
+                        }
+                    }
+                }
+
+            }
+
+        }
+        System.out.println(totalXmas);
     }
 }
